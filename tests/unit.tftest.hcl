@@ -129,9 +129,12 @@ run "https_listener_has_tls13_default_policy" {
 
 run "access_logs_off_by_default" {
   command = plan
+  # Terraform doesn't short-circuit `||`, so we can't write
+  # `length == 0 || [0].enabled == false`. When no bucket is set the
+  # dynamic block doesn't fire and access_logs is an empty list.
   assert {
-    condition     = length(aws_lb.this.access_logs) == 0 || aws_lb.this.access_logs[0].enabled == false
-    error_message = "Access logs must be off by default (no bucket supplied)."
+    condition     = length(aws_lb.this.access_logs) == 0
+    error_message = "Access logs must be off by default (dynamic block should not fire when no bucket supplied)."
   }
 }
 
