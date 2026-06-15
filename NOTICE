@@ -1,0 +1,39 @@
+terraform-aws-alb
+Copyright 2026 Devotica Labs
+
+This product includes software developed at Devotica Labs
+(https://github.com/devotica-labs).
+
+================================================================================
+
+This module adopts the same governance shape as terraform-aws-vpc,
+terraform-aws-iam, terraform-aws-s3, terraform-aws-kms, and
+terraform-aws-rds: unified Foundation Plan §15.2 tagging, the central
+reusable CI workflow in devotica-labs/terraform-shared-config, and
+conftest policies from devotica-labs/terraform-policies.
+
+Defaults are aligned with fintech compliance requirements:
+
+- enable_deletion_protection on by default (the cost of accidental
+  deletion >>> the friction of toggling this off).
+- drop_invalid_header_fields on by default (HTTP-smuggling mitigation,
+  CIS AWS Foundations 5.1.x).
+- desync_mitigation_mode = defensive (AWS-recommended balance for the
+  HTTP-desync class of attacks).
+- HTTP/2 on by default.
+- preserve_host_header on by default (apps that depend on the original
+  Host header — multi-tenant routing, signed URLs — need it).
+- Default SSL policy ELBSecurityPolicy-TLS13-1-2-2021-06 (TLS 1.2/1.3
+  modern policy that drops every cipher with known weakness).
+- HTTPS listeners are required to supply certificate_arn (validation
+  refuses HTTPS without a cert).
+
+Listener rules (path-based and host-based routing) and authentication
+(Cognito / OIDC) are deferred to v0.2 — see the README scope table.
+Network Load Balancers live in a sister module (terraform-aws-nlb) —
+ALB and NLB share enough surface to be confusing if combined.
+
+================================================================================
+
+Third-party components and their licenses are documented in CHANGELOG.md
+and inline where used.

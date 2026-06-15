@@ -1,0 +1,18 @@
+# CODEOWNERS for terraform-aws-alb
+#
+# ALB sits on the edge of every traffic path. Listener configuration, TLS
+# policy, and header processing all shape the security posture of every
+# consumer. Security has equity in every file.
+#
+# Per Module-Repo Plan v1.3 §16 governance.
+
+# Default: every change requires both teams to approve.
+*                          @devotica-labs/cloud-leads @devotica-labs/security
+
+# Security-primary: TLS policy, listener defaults, header processing.
+/main.tf                   @devotica-labs/security @devotica-labs/cloud-leads
+/variables.tf              @devotica-labs/security @devotica-labs/cloud-leads
+
+# CI/CD pipelines.
+/.github/                  @devotica-labs/cloud-leads @devotica-labs/security
+/.github/workflows/        @devotica-labs/cloud-leads @devotica-labs/security
