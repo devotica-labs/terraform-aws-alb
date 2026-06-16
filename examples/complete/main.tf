@@ -15,6 +15,12 @@ provider "aws" {
 #   source  = "devotica-labs/alb/aws"
 #   version = "~> 0.1"
 
+# trivy:ignore:AWS-0053 — the example deliberately shows an internet-facing
+# ALB (the production edge). To turn it internal, set internal = true and
+# place the ALB in private subnets. Aliased as aws-elb-alb-not-public in tfsec.
+# trivy:ignore:AWS-0054 — http-redirect listener is the safe HTTP→HTTPS
+# redirect pattern; health listener is fixed-response only and never reaches
+# real backends. Aliased as aws-elb-http-not-used in tfsec.
 module "alb" {
   source = "../.."
 
