@@ -8,6 +8,18 @@ Releases are cut automatically by `release-please` on merge to `main`,
 driven by Conventional Commit prefixes (`feat:` → minor, `fix:`/`docs:`/`chore:` → patch,
 `feat!:` or `BREAKING CHANGE:` footer → major).
 
+## 0.1.0 (2026-06-16)
+
+
+### Features
+
+* initial terraform-aws-alb module ([64f8c19](https://github.com/devotica-labs/terraform-aws-alb/commit/64f8c19ff0fe0bbf5138b250ad710b53a3daa38a))
+
+
+### Bug Fixes
+
+* tfsec ignores on examples + assertion that doesn't short-circuit ([#5](https://github.com/devotica-labs/terraform-aws-alb/issues/5)) ([0318b60](https://github.com/devotica-labs/terraform-aws-alb/commit/0318b60169f02690e3e117822bc96411173dde2b))
+
 ## [Unreleased]
 
 ### Added
