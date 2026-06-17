@@ -48,9 +48,10 @@ jobs:
             --bundle="${TAG_NAME}.bundle" \
             <(echo "${TAG_NAME}")
 
-      - uses: cyclonedx/gh-terraform-provider-action@v1
+      - uses: anchore/sbom-action@v0
         with:
-          project-directory: .
+          path: .
+          format: cyclonedx-json
           output-file: "${{ needs.release_please.outputs.tag_name }}.cdx.json"
 
       - uses: softprops/action-gh-release@v3
