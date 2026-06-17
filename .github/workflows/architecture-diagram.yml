@@ -17,7 +17,7 @@ jobs:
   render:
     name: render
     runs-on: ubuntu-22.04
-    if: ${{ !contains(github.event.head_commit.message, '[skip-arch-diagram]') }}
+    if: ${{ github.actor != 'dependabot[bot]' && !contains(github.event.head_commit.message, '[skip-arch-diagram]') }}
 
     steps:
       - name: Checkout (PR branch when applicable)
