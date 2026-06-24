@@ -1,0 +1,27 @@
+# Trivy/tfsec ignores for terraform-aws-alb. AVD-prefixed IDs are required here
+# because the findings are attributed to the module's main.tf when scanned
+# *through the example module calls* — inline `trivy:ignore` comments in
+# main.tf/examples do not suppress them in that path.
+
+# AVD-AWS-0053 — "Load balancer is exposed publicly".
+#
+# This module's purpose is the public-facing application edge. `var.internal`
+# defaults the ALB to internet-facing; set `internal = true` for an internal
+# ALB. Public exposure is intentional and is fronted by the caller's security
+# groups (and optionally a WAF / CloudFront layer), so the blanket "exposed
+# publicly" flag does not apply.
+#
+# Resource: main.tf  resource "aws_lb" "this"  (internal = var.internal)
+AVD-AWS-0053
+
+# AVD-AWS-0054 — "Listener for application load balancer does not use HTTPS".
+#
+# The module supports HTTP listeners, which in the recommended pattern are
+# HTTP→HTTPS redirects (default_action_type = "redirect", as in
+# examples/complete) or fixed-response health endpoints that never carry
+# application traffic. Trivy flags any non-HTTPS listener regardless of whether
+# it only redirects. The real traffic path is the HTTPS listener with an ACM
+# certificate; forcing HTTPS-only would remove the standard 80→443 redirect.
+#
+# Resource: main.tf  resource "aws_lb_listener" "this"
+AVD-AWS-0054
