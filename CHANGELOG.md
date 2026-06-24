@@ -15,6 +15,13 @@ driven by Conventional Commit prefixes (`feat:` → minor, `fix:`/`docs:`/`chore
 
 * **ci:** add .trivyignore for AVD-AWS-0053/0054 (public ALB + HTTP redirect) ([07f3fd2](https://github.com/devotica-labs/terraform-aws-alb/commit/07f3fd2db81ea5557f2612c24b1fc0bfbd5f1ba8))
 
+## [0.1.2](https://github.com/devotica-labs/terraform-aws-alb/compare/v0.1.1...v0.1.2) (2026-06-24)
+
+
+### Bug Fixes
+
+* **ci:** add .trivyignore for AVD-AWS-0053/0054 (public ALB + HTTP redirect) ([07f3fd2](https://github.com/devotica-labs/terraform-aws-alb/commit/07f3fd2db81ea5557f2612c24b1fc0bfbd5f1ba8))
+
 ## [0.1.1](https://github.com/devotica-labs/terraform-aws-alb/compare/v0.1.0...v0.1.1) (2026-06-17)
 
 
